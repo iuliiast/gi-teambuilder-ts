@@ -1,3 +1,4 @@
+import { useState } from "react";
 import characters from "../../data/characters";
 import Card from "./Card";
 import { userCharactersNames } from "./Card";
@@ -16,8 +17,21 @@ function Loader() {
 }
 
 function App() {
+	const [userCharacters, setCharacters] = useState(userCharactersNames);
+
 	function handleClick() {
 		return <Results />;
+	}
+
+	function addCard(name: string) {
+		if (name && !userCharacters.includes(name)) {
+			setCharacters((userCharacters) => [...userCharacters, name]);
+			console.log(userCharactersNames);
+		} else {
+			userCharacters.filter((char: string) => char !== name);
+			console.log(userCharacters);
+		}
+		return <div>{userCharacters}</div>;
 	}
 
 	return (

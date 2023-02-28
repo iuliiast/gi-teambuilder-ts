@@ -17,19 +17,6 @@ let selectedCharacters = [];
 // 	"Traveler",
 // ];
 
-function MakeTeam(team: any) {
-	return (
-		<div className="team">
-			{team &&
-				team.map((name: any, index: any) => {
-					<div className="small-card" key={index}>
-						<img src={`../images/${name}.png`} alt="char-pic" />
-					</div>;
-				})}
-		</div>
-	);
-}
-
 function getFloorTeams(floor: any) {
 	return (
 		floor &&
