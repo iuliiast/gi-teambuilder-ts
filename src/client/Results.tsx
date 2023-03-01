@@ -1,6 +1,6 @@
 import "./App.css";
 import characters from "../../data/characters";
-import { userCharactersNames } from "./Card";
+import { userCharactersNames } from "./App";
 import { useState, useEffect } from "react";
 let selectedCharacters = [];
 

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import characters from "../../data/characters";
 import Card from "./Card";
-import { userCharactersNames } from "./Card";
 import Results from "./Results";
 import "./App.css";
 
@@ -16,22 +15,20 @@ function Loader() {
 	}
 }
 
+export let userCharactersNames: any[] = [];
+
 function App() {
 	const [userCharacters, setCharacters] = useState(userCharactersNames);
 
-	function handleClick() {
-		return <Results />;
-	}
-
-	function addCard(name: string) {
-		if (name && !userCharacters.includes(name)) {
+	function addCard(name: any) {
+		if (userCharacters && !userCharacters.includes(name)) {
 			setCharacters((userCharacters) => [...userCharacters, name]);
-			console.log(userCharactersNames);
+			console.log(userCharacters);
 		} else {
-			userCharacters.filter((char: string) => char !== name);
+			setCharacters(userCharacters.filter((item) => item !== name));
 			console.log(userCharacters);
 		}
-		return <div>{userCharacters}</div>;
+		return console.log(userCharacters);
 	}
 
 	return (
@@ -56,11 +53,17 @@ function App() {
 				</div>
 				<div id="characters-el" className="characters">
 					{characters.map((char) => (
-						<Card key={char.id} name={char.name} />
+						<Card
+							key={char.id}
+							name={char.name}
+							onClick={() => {
+								addCard(char.name);
+							}}
+						></Card>
 					))}
 				</div>
 			</main>
-			<button onClick={handleClick}>Results</button>
+			{/* <button onClick={handleClick}>Results</button> */}
 			<Results />
 			<div className="footer">
 				<p>
