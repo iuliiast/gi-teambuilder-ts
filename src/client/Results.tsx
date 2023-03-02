@@ -1,6 +1,5 @@
 import "./App.css";
 import characters from "../../data/characters";
-import { userCharactersNames } from "./App";
 import { useState, useEffect } from "react";
 let selectedCharacters = [];
 
@@ -37,13 +36,14 @@ const isEmpty = (obj: any) => {
 	return Object.keys(obj).every((key) => obj[key].length === 0);
 };
 
-export default function Results() {
-	// const [teams, setTeams] = useState<any>(null);
+export default function Results(arr: any) {
+	const userCharactersNames = arr.arr;
 	const [teams, setTeams] = useState<any>(null);
 	const getResults = async () => {
 		selectedCharacters = characters.filter((char) =>
 			userCharactersNames.includes(char.name)
 		);
+		console.log("!§selectedCharacters:", selectedCharacters);
 		const data = selectedCharacters;
 		const options = {
 			method: "POST",
@@ -61,9 +61,8 @@ export default function Results() {
 		setTeams(userTeams);
 	};
 	useEffect(() => {
-		console.log("проверка");
 		getResults();
-		console.log("232131", getResults());
+		console.log("getResults()", getResults());
 	}, []);
 	// const teamSS: { floor9_a: Array<String> } = teams;
 	const userTeams: any = teams;
@@ -75,92 +74,12 @@ export default function Results() {
 	const userTeams11b = userTeams ? userTeams.floor11_b : "";
 	const userTeams12a = userTeams ? userTeams.floor12_a : "";
 	const userTeams12b = userTeams ? userTeams.floor12_b : "";
-	console.log("where is this thing!!:", userTeams9a[0]);
 	// if (isEmpty(teams)) {
 	// 	alert(`Sorry, there are no teams. Please select more characters.`);
 	// } else {
-	// 	return (
-	// 		<div id="results" className="container results section-visible">
-	// 			<div id="floor9" className="floor">
-	// 				<div id="chamber9-1" className="chamber">
-	// 					<h3>Floor 9 • First half</h3>
-	// 					<div id="list9-1" className="list">
-	// 						{teams.floor9_a.map((team: any) => {
-	// 							makeTeam(team);
-	// 						})}
-	// 					</div>
-	// 				</div>
-	// 				<div id="chamber9-2" className="chamber">
-	// 					<h3>Floor 9 • Second half</h3>
-	// 					<div id="list9-2" className="list">
-	// 						{teams.floor9_b.map((team: any) => {
-	// 							makeTeam(team);
-	// 						})}
-	// 					</div>
-	// 				</div>
-	// 			</div>
-
-	// 			<div id="floor10" className="floor">
-	// 				<div id="chamber10-1" className="chamber">
-	// 					<h3>Floor 10 • First half</h3>
-	// 					<div id="list10-1" className="list">
-	// 						{teams.floor10_a.map((team: any) => {
-	// 							makeTeam(team);
-	// 						})}
-	// 					</div>
-	// 				</div>
-	// 				<div id="chamber10-2" className="chamber">
-	// 					<h3>Floor 10 • Second half</h3>
-	// 					<div id="list10-2" className="list">
-	// 						{teams.floor10_b.map((team: any) => {
-	// 							makeTeam(team);
-	// 						})}
-	// 					</div>
-	// 				</div>
-	// 			</div>
-
-	// 			<div id="floor11" className="floor">
-	// 				<div id="chamber11-1" className="chamber">
-	// 					<h3>Floor 11 • First half</h3>
-	// 					<div id="list11-1" className="list">
-	// 						{teams.floor11_a.map((team: any) => {
-	// 							makeTeam(team);
-	// 						})}
-	// 					</div>
-	// 				</div>
-	// 				<div id="chamber11-2" className="chamber">
-	// 					<h3>Floor 11 • Second half</h3>
-	// 					<div id="list11-2" className="list">
-	// 						{teams.floor11_b.map((team: any) => {
-	// 							makeTeam(team);
-	// 						})}
-	// 					</div>
-	// 				</div>
-	// 			</div>
-
-	// 			<div id="floor12" className="floor">
-	// 				<div id="chamber12-1" className="chamber">
-	// 					<h3>Floor 12 • First half</h3>
-	// 					<div id="list12-1" className="list">
-	// 						{teams.floor12_a.map((team: any) => {
-	// 							makeTeam(team);
-	// 						})}
-	// 					</div>
-	// 				</div>
-	// 				<div id="chamber12-2" className="chamber">
-	// 					<h3>Floor 12 • Second half</h3>
-	// 					<div id="list12-2" className="list">
-	// 						{teams.floor12_b.map((team: any) => {
-	// 							makeTeam(team);
-	// 						})}
-	// 					</div>
-	// 				</div>
-	// 			</div>
-	// 		</div>
-	// 	);
-	// }
 	return (
 		<>
+			{userCharactersNames}
 			<div id="results" className="container results section-visible">
 				<div id="floor9" className="floor">
 					<div id="chamber9-1" className="chamber">

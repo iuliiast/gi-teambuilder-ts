@@ -1,34 +1,36 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import characters from "../../data/characters";
 import Card from "./Card";
 import Results from "./Results";
 import "./App.css";
 
-function Loader() {
-	if (userCharactersNames.length === 0) {
-		alert(`You haven't chosen anyone.`);
-	} else {
-		return <Results />;
-		// {
-		// 	window.location.href = "#results";
-		// }
-	}
-}
-
 export let userCharactersNames: any[] = [];
 
 function App() {
 	const [userCharacters, setCharacters] = useState(userCharactersNames);
+	const [showResults, setShowResults] = useState(false);
 
 	function addCard(name: any) {
 		if (userCharacters && !userCharacters.includes(name)) {
 			setCharacters((userCharacters) => [...userCharacters, name]);
-			console.log(userCharacters);
+			console.log("userCharacters", userCharacters);
 		} else {
 			setCharacters(userCharacters.filter((item) => item !== name));
 			console.log(userCharacters);
 		}
 		return console.log(userCharacters);
+	}
+
+	function Loader() {
+		if (userCharacters.length === 0) {
+			alert(`You haven't chosen anyone.`);
+		} else {
+			// setCharacters(userCharacters);
+			// setShowResults(true);
+			setShowResults(!showResults); // {
+			// 	window.location.href = "#results";
+			// }
+		}
 	}
 
 	return (
@@ -43,11 +45,7 @@ function App() {
 						<br />
 						for Spiral Abyss (v2.0)
 					</p>
-					<p>
-						Please note that a large number of popular characters for the Abyss
-						can be heavy to load.
-					</p>
-					<button onClick={async () => Loader()} id="resultsBtn">
+					<button onClick={() => Loader()} id="resultsBtn">
 						Find results
 					</button>
 				</div>
@@ -63,8 +61,7 @@ function App() {
 					))}
 				</div>
 			</main>
-			{/* <button onClick={handleClick}>Results</button> */}
-			<Results />
+			{showResults && <Results arr={userCharacters} />}
 			<div className="footer">
 				<p>
 					This site is not affiliated with miHoYo Co., Ltd. (HoYoverse). Genshin

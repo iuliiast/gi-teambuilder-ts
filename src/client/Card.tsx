@@ -2,11 +2,9 @@ import { useState } from "react";
 import "./Card.css";
 
 export default function Card({
-	key,
 	name,
 	onClick,
 }: {
-	key: string;
 	name: string;
 	onClick: () => void;
 }) {
