@@ -3,6 +3,7 @@ import express from "express";
 import ViteExpress from "vite-express";
 import { routerIndex } from "../../routers/router.index";
 const app = express();
+ViteExpress.config({ mode: "production" });
 app.use(cors());
 
 app.get("/hello", (_, res) => {
