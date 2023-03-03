@@ -1,4 +1,3 @@
-import "dotenv/config";
 import cors from "cors";
 import express from "express";
 import ViteExpress from "vite-express";
