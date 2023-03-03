@@ -141,13 +141,13 @@ main {
 	border-radius: 10%;
 	transition: transform 500ms;
 }
-/* .card:hover,
+.card:hover,
 .card:focus {
 	border: 2px solid orange;
 	background: linear-gradient(#ff7e5f, #feb47b);
 	transform: scale(1.05);
 	cursor: pointer;
-} */
+}
 .card-unclicked {
 	background: transparent;
 }
