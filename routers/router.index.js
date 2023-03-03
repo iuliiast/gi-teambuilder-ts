@@ -13,7 +13,7 @@ routerIndex.post("/", async (req, res) => {
 	});
 });
 
-//Функция, которая находит команды
+//Function search teams
 function findTeams(obj, chars) {
 	const mappedId = chars.map((char) => char.id_appsample);
 	let result = {};
@@ -27,7 +27,7 @@ function findTeams(obj, chars) {
 	return getNames(result);
 }
 
-//Функция, которая меняет ID на имена (исп. в findTeams)
+//Function changes ID on names (used in findTeams)
 function getNames(data) {
 	let result = {};
 	for (const [key, value] of Object.entries(data)) {

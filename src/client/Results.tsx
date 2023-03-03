@@ -1,20 +1,6 @@
-import "./App.css";
 import characters from "../../data/characters";
 import { useState, useEffect } from "react";
 let selectedCharacters = [];
-
-// let userCharactersNames = [
-// 	"Xingqiu",
-// 	"Xinyan",
-// 	"Eula",
-// 	"Zhongli",
-// 	"Tartaglia",
-// 	"Yanfei",
-// 	"Kaedehara Kazuha",
-// 	"Kamisato Ayaka",
-// 	"Hu Tao",
-// 	"Traveler",
-// ];
 
 function getFloorTeams(floor: any) {
 	return (
@@ -79,7 +65,6 @@ export default function Results(arr: any) {
 	// } else {
 	return (
 		<>
-			{userCharactersNames}
 			<div id="results" className="container results section-visible">
 				<div id="floor9" className="floor">
 					<div id="chamber9-1" className="chamber">

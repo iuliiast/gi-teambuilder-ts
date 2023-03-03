@@ -1,15 +1,14 @@
-import { useState, useCallback } from "react";
+import { useState, useMemo } from "react";
 import characters from "../../data/characters";
 import Card from "./Card";
 import Results from "./Results";
 import "./App.css";
 
 export let userCharactersNames: any[] = [];
-
 function App() {
 	const [userCharacters, setCharacters] = useState(userCharactersNames);
 	const [showResults, setShowResults] = useState(false);
-
+	const childKey = "" + useMemo(Math.random, [userCharacters]);
 	function addCard(name: any) {
 		if (userCharacters && !userCharacters.includes(name)) {
 			setCharacters((userCharacters) => [...userCharacters, name]);
@@ -22,14 +21,12 @@ function App() {
 	}
 
 	function Loader() {
+		const resultsEl = document.getElementById("results");
 		if (userCharacters.length === 0) {
 			alert(`You haven't chosen anyone.`);
 		} else {
-			// setCharacters(userCharacters);
-			// setShowResults(true);
-			setShowResults(!showResults); // {
-			// 	window.location.href = "#results";
-			// }
+			setShowResults(true);
+			resultsEl && resultsEl.scrollIntoView({ behavior: "smooth" });
 		}
 	}
 
@@ -45,9 +42,14 @@ function App() {
 						<br />
 						for Spiral Abyss (v2.0)
 					</p>
-					<button onClick={() => Loader()} id="resultsBtn">
+					<a
+						onClick={() => Loader()}
+						id="resultsBtn"
+						href={(window.location.href = "#results")}
+						className="results-btn"
+					>
 						Find results
-					</button>
+					</a>
 				</div>
 				<div id="characters-el" className="characters">
 					{characters.map((char) => (
@@ -61,7 +63,7 @@ function App() {
 					))}
 				</div>
 			</main>
-			{showResults && <Results arr={userCharacters} />}
+			{showResults && <Results arr={userCharacters} key={childKey} />}
 			<div className="footer">
 				<p>
 					This site is not affiliated with miHoYo Co., Ltd. (HoYoverse). Genshin
