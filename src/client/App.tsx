@@ -3,13 +3,12 @@ import characters from "../../data/characters";
 import Card from "./Card";
 import Results from "./Results";
 import "./App.css";
-
-export let userCharactersNames: any[] = [];
+export let userCharactersNames: string[] = [];
 function App() {
 	const [userCharacters, setCharacters] = useState(userCharactersNames);
 	const [showResults, setShowResults] = useState(false);
 	const childKey = "" + useMemo(Math.random, [userCharacters]);
-	function addCard(name: any) {
+	function addCard(name: string) {
 		if (userCharacters && !userCharacters.includes(name)) {
 			setCharacters((userCharacters) => [...userCharacters, name]);
 			console.log("userCharacters", userCharacters);

@@ -9,7 +9,7 @@ function SmallCard(props: any) {
 export default function makeTeam(team: any) {
 	return (
 		<div className="team">
-			{team.map((name: any) => {
+			{team.map((name: string) => {
 				<SmallCard char={name} />;
 			})}
 		</div>

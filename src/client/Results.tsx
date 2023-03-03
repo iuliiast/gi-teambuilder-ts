@@ -5,10 +5,10 @@ let selectedCharacters = [];
 function getFloorTeams(floor: any) {
 	return (
 		floor &&
-		floor.map((team: any, index: any) => (
+		floor.map((team: any, index: number) => (
 			<div className="team" key={index}>
 				{team &&
-					team.map((name: any, index: any) => (
+					team.map((name: string, index: number) => (
 						<div className="small-card" key={index}>
 							<img src={`../images/${name}.png`} alt="char-pic" />
 						</div>
@@ -29,7 +29,6 @@ export default function Results(arr: any) {
 		selectedCharacters = characters.filter((char) =>
 			userCharactersNames.includes(char.name)
 		);
-		console.log("!§selectedCharacters:", selectedCharacters);
 		const data = selectedCharacters;
 		const options = {
 			method: "POST",
@@ -43,14 +42,11 @@ export default function Results(arr: any) {
 		//Send data from server to the client
 		const json = await res.json();
 		const userTeams = json.userTeams;
-		console.log("JSON:", userTeams);
 		setTeams(userTeams);
 	};
 	useEffect(() => {
 		getResults();
-		console.log("getResults()", getResults());
 	}, []);
-	// const teamSS: { floor9_a: Array<String> } = teams;
 	const userTeams: any = teams;
 	const userTeams9a = userTeams ? userTeams.floor9_a : "";
 	const userTeams9b = userTeams ? userTeams.floor9_b : "";
@@ -60,9 +56,7 @@ export default function Results(arr: any) {
 	const userTeams11b = userTeams ? userTeams.floor11_b : "";
 	const userTeams12a = userTeams ? userTeams.floor12_a : "";
 	const userTeams12b = userTeams ? userTeams.floor12_b : "";
-	// if (isEmpty(teams)) {
-	// 	alert(`Sorry, there are no teams. Please select more characters.`);
-	// } else {
+
 	return (
 		<>
 			<div id="results" className="container results section-visible">
